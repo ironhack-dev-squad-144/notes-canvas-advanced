@@ -3,6 +3,11 @@ let ctx = canvas.getContext("2d");
 let angle = 0;
 let angle2 = 0;
 let scaleRatio = 1;
+let b1 = new Ball(50, 200, 100, 2, 0, "red");
+let b2 = new Ball(50, 400, 100, -2, 0, "blue");
+
+const CANVAS_WIDTH = canvas.width
+const CANVAS_HEIGHT = canvas.height
 
 function drawReferential() {
   ctx.save();
@@ -60,11 +65,14 @@ function drawRotatedSquare2() {
 // Don't change any variable (except ctx) in this function
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-  ctx.fillRect(100, 100, 100, 100);
-  // drawReferential();
-  ctx.fillRect(300, 100, 100, 100);
-  drawRotatedSquare();
-  drawRotatedSquare2();
+  // ctx.fillRect(100, 100, 100, 100);
+  // // drawReferential();
+  // ctx.fillRect(300, 100, 100, 100);
+  // drawRotatedSquare();
+  // drawRotatedSquare2();
+
+  b1.draw(ctx);
+  b2.draw(ctx);
 }
 
 // To change variables
@@ -73,7 +81,10 @@ function updateEverything() {
   angle += 0.01;
   angle2 += 0.02;
   scaleRatio *= 1.005;
-  if (scaleRatio > 2) scaleRatio = 2
+  if (scaleRatio > 2) scaleRatio = 2;
+
+  b1.update();
+  b2.update();
 }
 
 function animation() {
